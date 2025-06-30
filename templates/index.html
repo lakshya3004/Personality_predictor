@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Personality Predictor</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background-color: #f4f7f8;
+            padding: 30px;
+            max-width: 600px;
+            margin: auto;
+        }
+        h2 {
+            text-align: center;
+        }
+        form {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0px 4px 10px rgba(0,0,0,0.1);
+        }
+        label {
+            display: block;
+            margin-top: 15px;
+            font-weight: bold;
+        }
+        input[type="number"],
+        select {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+        }
+        input[type="submit"] {
+            margin-top: 20px;
+            padding: 12px;
+            width: 100%;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        .result {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 1.2rem;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <h2>Personality Type Predictor</h2>
+    <form method="POST" action="/predict">
+        <label for="Time_spent_Alone">Average daily hours spent alone (0–11)</label>
+        <input type="number" name="Time_spent_Alone" min="0" max="11" step="1" required>
+
+        <label for="Stage_fear">Do you have stage fear?</label>
+        <select name="Stage_fear" required>
+            <option value="0">No</option>
+            <option value="1">Yes</option>
+        </select>
+
+        <label for="Social_event_attendance">Social events attended weekly (0–10)</label>
+        <input type="number" name="Social_event_attendance" min="0" max="10" step="1" required>
+
+        <label for="Going_outside">Outdoor activity frequency per week (0–7)</label>
+        <input type="number" name="Going_outside" min="0" max="7" step="1" required>
+
+        <label for="Drained_after_socializing">Do you feel drained after socializing?</label>
+        <select name="Drained_after_socializing" required>
+            <option value="0">No</option>
+            <option value="1">Yes</option>
+        </select>
+
+        <label for="Friends_circle_size">Number of close friends (0–15)</label>
+        <input type="number" name="Friends_circle_size" min="0" max="15" step="1" required>
+
+        <label for="Post_frequency">Social media posts per week (0–10)</label>
+        <input type="number" name="Post_frequency" min="0" max="10" step="1" required>
+
+        <input type="submit" value="Predict Personality">
+    </form>
+
+    {% if result %}
+    <div class="result">
+        {{ result }}
+    </div>
+    {% endif %}
+</body>
+</html>
